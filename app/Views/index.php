@@ -6,7 +6,7 @@
 			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="text-right">
-					<a href="" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
+					<a href="#" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
 						<i class="material-icons float-left" data-toggle="tooltip" title="Add Pizza!" data-placement="left">add</i>&nbsp;Add
 					</a>
 				</div>
