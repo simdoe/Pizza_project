@@ -85,6 +85,11 @@ class User extends BaseController
 		return view('register', $data);
 	}
 
+	public function userLogout()
+	{
+		section()->destroy();
+		return redirect()->to('/');
+	}
 	//--------------------------------------------------------------------
 
 }

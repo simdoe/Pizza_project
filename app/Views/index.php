@@ -6,7 +6,7 @@
 			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="text-right">
-					<a href="#" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
+					<a href="" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
 						<i class="material-icons float-left" data-toggle="tooltip" title="Add Pizza!" data-placement="left">add</i>&nbsp;Add
 					</a>
 				</div>
@@ -77,13 +77,13 @@
         <div class="modal-body text-right">
 			<form  action="/" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Pizza name">
+					<input type="text" class="form-control" placeholder="Pizza name" name="pizza_name">
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" placeholder="Prize in dollars">
+					<input type="number" class="form-control" placeholder="Prize in dollars" name="prize">
 				</div>
 				<div class="form-group">
-					<textarea name="" placeholder="Ingredients" class="form-control"></textarea>
+					<textarea name="ingredient" placeholder="Ingredients" class="form-control"></textarea>
 				</div>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;

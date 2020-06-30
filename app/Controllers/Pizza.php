@@ -6,10 +6,8 @@ class Pizza extends BaseController
 	{
 		return view('index');
 	}
-	public function signinAccount()
-	{
-		return view('auths/register');
-	}
+	
+	
 	//--------------------------------------------------------------------
 
 }
