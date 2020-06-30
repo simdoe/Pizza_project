@@ -6,7 +6,7 @@
 			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="text-right">
-					<a href="" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
+					<a href="index" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
 						<i class="material-icons float-left" data-toggle="tooltip" title="Add Pizza!" data-placement="left">add</i>&nbsp;Add
 					</a>
 				</div>
@@ -18,42 +18,24 @@
 						<th>Price</th>
 						<th></th>
 					</tr>
+					
+					<?php foreach($pizzas as $pizza):?>	
 					<tr>
-						<td class="pizzaName">Jack Pizza</td>
-						<td>Tomatoes, ham, cheese, peperoni</td>
-						<td class="text-success font-weight-bolder">15$</td>
+						<td><?= $pizza['name']?></td>
+						<td><?= $pizza['ingredients']?></td>
+						<td><?= $pizza['prize']?>$</td>
 						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
+							<a href="edit" data-toggle="modal" data-target="#updatePizza">
+								<i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i>
+							</a>
+							<a href="remove/<?= $pizza['id']?>" data-toggle="tooltip" title="Delete Pizza!" data-placement="right">
+								<i class="material-icons text-danger">delete</i>
+							</a>
 						</td>
 					</tr>
-					<tr>
-						<td class="pizzaName">Seiha Pizza</td>
-						<td>Tomatoes, ham, cheese, peperoni</td>
-						<td  class="text-success font-weight-bolder">1.5$</td>
-						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td class="pizzaName">Rady Pizza</td>
-						<td>Tomatoes, ham, cheese, peperoni</td>
-						<td  class="text-success font-weight-bolder">1500$</td>
-						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td class="pizzaName">Ronan Pizza</td>
-						<td>Tomatoes, ham, cheese, peperoni</td>
-						<td  class="text-success font-weight-bolder">1$</td>
-						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
-						</td>
-					</tr>
+					<?php endforeach;?>
+					
+					
 				</table>
 			</div>
 			<div class="col-2"></div>
@@ -75,20 +57,28 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="/" method="post">
+			<form  action="pizza" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Pizza name" name="pizza_name">
+					<input type="text" class="form-control" placeholder="Pizza name" name="name">
 				</div>
 				<div class="form-group">
 					<input type="number" class="form-control" placeholder="Prize in dollars" name="prize">
 				</div>
 				<div class="form-group">
-					<textarea name="ingredient" placeholder="Ingredients" class="form-control"></textarea>
+					<textarea name="ingredients" placeholder="Ingredients" class="form-control"></textarea>
 				</div>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
 		  <input type="submit" value="CREATE" class="createBtn text-warning">
         </div>
+
+		<?php if(isset($validation)):?>
+			<div class="col-12">
+				<div class="alert alert-danger" role="alert">
+					<?= $validation->listErrors();?>
+				</div>
+			</div>
+		<?php endif;?>
         </form>
       </div>
     </div>

@@ -10,8 +10,8 @@ class User extends BaseController
 		if($this->request->getMethod() == 'post'){
 
 			$rules = [
-				'email' => 'required|min_length[6]|max_length[50]|valid_email',
-				'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
+				'email' => 'required|valid_email',
+				'password' => 'required',
 			];
 
 			$errors = [
@@ -59,9 +59,9 @@ class User extends BaseController
 		if($this->request->getMethod() == 'post'){
 
 			$rules = [
-				'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
-				'password' => 'required|min_length[8]|max_length[255]',
-				'address' => 'required|min_length[4]|max_length[50]'
+				'email' => 'required|valid_email',
+				'password' => 'required',
+				'address' => 'required'
 			];
 
 			if(!$this->validate($rules)){
