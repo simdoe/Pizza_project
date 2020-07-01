@@ -33,14 +33,14 @@ $routes->setAutoRoute(true);
 
 //For controler User when call view
  $routes->add('/', 'User::index');
- $routes->add('register', 'User::register');
- $routes->add('signin', 'User::userLogout');
+ $routes->add('/register', 'User::register');
+ $routes->add('/', 'User::userLogout');
 
 // For controler Pizza when call view
- $routes->add('index', 'Pizza::viewsPizza');
- $routes->add('pizza', 'Pizza::addPizza');
- $routes->add('edit', 'Pizza::updatePizza');
- $routes->add('remove/(:num)', 'Pizza::deletePizza/$1');
+ $routes->add('pizza', 'Pizza::viewsPizza');
+ $routes->add('/add', 'Pizza::addPizza');
+ $routes->add('/edit/(:num)', 'Pizza::updatePizza/$1');
+ $routes->add('/remove/(:num)', 'Pizza::deletePizza/$1');
 
  
 

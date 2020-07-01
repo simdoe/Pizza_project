@@ -37,7 +37,7 @@ class Pizza extends BaseController
 				$pizza->createPizza($newData);
 				$session = session();
 				$session->setFlashdata('success', 'Successful Registration!!!');
-				return redirect()->to('index');
+				return redirect()->to('/pizza');
 			}
 		}
 
@@ -48,14 +48,36 @@ class Pizza extends BaseController
     {
         $pizza = new PizzaModel();
         $pizza->delete($id);
-        return redirect()->to('/index');
+        return redirect()->to('/pizza');
     }
 
     public function updatePizza()
 	{
-		$pizza = new PizzaModel();
-        $pizza->update($_POST['id'],$_POST);
-		return redirect()->to('/index');
+		if($this->request->getMethod() == "post"){
+			helper(['form']);
+			$rules = [
+				'name'=>'required|alpha_space',
+				'price'=>'required|min_length[1]|max_length[50]',
+				'ingredient'=>'required',
+			];
+			 if($this->validate($rules)){
+				$pizza = new PizzaModel();
+				$id = $this->request->getVar('id');
+				$pizzaName = $this->request->getVar('name');
+				$pizzaPrice = $this->request->getVar('prize');
+				$pizzaIngredient = $this->request->getVar('ingredients');
+				$pizzaData = array(
+					'name'=>$pizzaName,
+					'prize'=>$pizzaPrice,
+					'ingredients'=>$pizzaIngredient
+				);
+				$pizzaModel->update($id,$pizzaData);
+				return redirect()->to('/pizza');
+			}else{
+				$data['validation'] = $this->validator;
+				return view('/index',$data);
+			}
+		}
 	}
 	
 	//--------------------------------------------------------------------

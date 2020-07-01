@@ -18,6 +18,24 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
+
+        <!-- edit pizza data -->
+
+		$(document).ready(function(){
+			$('.editPizza').on('click', function(){
+				$('#updatePizza');
+				$tr = $(this).closest('tr');
+				var data = $tr.children('td').map(function(){
+					return $(this).text();
+				}).get();
+
+				$('#id').val(data[0]);
+				$('#name').val(data[1]);
+				$('#ingredients').val(data[2]);
+				$('#prize').val(data[3]);
+			});
+		});
+
     </script>
 </body>
 </html>

@@ -6,31 +6,43 @@
 			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="text-right">
+
+				<!-- set role user when they loing this add. -->
+				<?php if(session()->get('role')==1): ?>
 					<a href="index" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
 						<i class="material-icons float-left" data-toggle="tooltip" title="Add Pizza!" data-placement="left">add</i>&nbsp;Add
 					</a>
+				<?php endif;?>
 				</div>
 				<hr>
 				<table class="table table-borderless table-hover">
 					<tr>
+						<th class = "hide">ID</th>
 						<th>Name</th>
 						<th>Ingredients</th>
 						<th>Price</th>
-						<th></th>
+						<?php if(session()->get('role')==1): ?>
+							<th>Status</th>
+						<?php endif;?>
 					</tr>
 					
 					<?php foreach($pizzas as $pizza):?>	
 					<tr>
+						<td class="hide"><?= $pizza['id'] ?></td>
 						<td><?= $pizza['name']?></td>
 						<td><?= $pizza['ingredients']?></td>
 						<td><?= $pizza['prize']?>$</td>
 						<td>
-							<a href="edit" data-toggle="modal" data-target="#updatePizza">
-								<i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i>
+
+						<!--  -->
+						<?php if(session()->get('role')==1) :?>
+							<a href="/edit/<?= $pizza['id']?>" data-toggle="modal" data-target="#updatePizza">
+								<i class="material-icons text-info editPizza" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i>
 							</a>
-							<a href="remove/<?= $pizza['id']?>" data-toggle="tooltip" title="Delete Pizza!" data-placement="right">
+							<a href="/remove/<?= $pizza['id']?>" data-toggle="tooltip" title="Delete Pizza!" data-placement="right">
 								<i class="material-icons text-danger">delete</i>
 							</a>
+						<?php endif;?>
 						</td>
 					</tr>
 					<?php endforeach;?>
@@ -57,7 +69,7 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="pizza" method="post">
+			<form  action="/add" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Pizza name" name="name">
 				</div>
@@ -86,6 +98,7 @@
   <!-- =================================END MODEL CREATE==================================================== -->
 
   <!-- ========================================START Model UPDATE================================================ -->
+	
 	<!-- The Modal -->
 	<div class="modal fade" id="updatePizza">
     <div class="modal-dialog">
@@ -99,16 +112,22 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="/" method="post">
+			<form  action="/edit" method="post">
+				<input type="hidden" name = "id" id = "id" >
 				<div class="form-group">
-					<input type="text" class="form-control" value="Rady Pizza">
+					<input type="text" class="form-control" name = "name" id = "name">
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" value="100">
+					<textarea   class="form-control" name = "ingredients" id = "ingredients" ></textarea>
 				</div>
 				<div class="form-group">
-					<textarea name=""  class="form-control">Cheese, Tomatoes, Chicken, Salad</textarea>
+					<input type="text" class="form-control" name = "prize" id = "prize" >
 				</div>
+				<?php if(isset($validation)): ?>
+					<div class="alert alert-danger" role="alert">
+						<?= $validation->listErrors(); ?>
+					</div>
+          		<?php endif; ?>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
 		  <input type="submit" value="UPDATE" class="createBtn text-warning">

@@ -27,11 +27,11 @@ class User extends BaseController
 
 				$user = $model->where('email', $this->request->getVar('email'))->first();
 				$this->setUserSession($user);
-				return redirect()->to('index');
+				return redirect()->to('pizza');
 			}
 		}
 
-		return view('login', $data);
+		return view('auths/login', $data);
 	}
 	//--------------------------------------------------------------------
 
@@ -42,6 +42,7 @@ class User extends BaseController
 			'id' => $user['id'],
 			'email' => $user['email'],
 			'address' => $user['address'],
+			'role' => $user['role'],
 			'isLoggedIn' => true,
 		];
 
@@ -59,9 +60,9 @@ class User extends BaseController
 		if($this->request->getMethod() == 'post'){
 
 			$rules = [
-				'email' => 'required|valid_email',
-				'password' => 'required',
-				'address' => 'required'
+				'email'=>'trim|required|valid_email',
+				'password'=>'required|trim',
+				'address'=>'required',
 			];
 
 			if(!$this->validate($rules)){
@@ -73,6 +74,7 @@ class User extends BaseController
 					'email' =>$this->request->getVar('email'),
 					'password' =>$this->request->getVar('password'),
 					'address' =>$this->request->getVar('address'),
+					'role' =>$this->request->getVar('role'),
 				];
 
 				$model->createUser($newData);
@@ -82,7 +84,7 @@ class User extends BaseController
 			}
 		}
 
-		return view('register', $data);
+		return view('auths/register', $data);
 	}
 
 	public function userLogout()

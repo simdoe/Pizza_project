@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="auth__body">
-    <form class="auth__form" autocomplete="off" action="/" method="post">
+    <form class="auth__form" autocomplete="off" action="" method="post">
       <div class="auth__form_body">
         <h3 class="auth__form_title">Peperoni App</h3>
         <hr>
@@ -34,7 +34,7 @@
           NEXT
         </button>
         <div class="mt-2">
-          <a href="/register" class="small text-uppercase">
+          <a href="register" class="small text-uppercase">
             CREATE ACCOUNT
           </a>
         </div>

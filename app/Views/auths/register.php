@@ -5,7 +5,7 @@
     
   </div>
   <div class="auth__body">
-    <form class="auth__form" autocomplete="off" action="/register" method="post">
+    <form class="auth__form" autocomplete="off" action="register" method="post">
       <div class="auth__form_body">
         <h3 class="auth__form_title">
         <img src="images/logo.svg" alt="" width="50">
@@ -26,7 +26,7 @@
           </div>
           <div class="form-check">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="">I'm a manager
+                <input type="checkbox" class="form-check-input" name = "role" value="1">I'm a manager
             </label>
         </div>
         </div>
