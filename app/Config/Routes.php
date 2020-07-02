@@ -38,8 +38,8 @@ $routes->setAutoRoute(true);
 
 // For controler Pizza when call view
  $routes->add('pizza', 'Pizza::viewsPizza');
- $routes->add('/add', 'Pizza::addPizza');
- $routes->add('/edit/(:num)', 'Pizza::updatePizza/$1');
+ $routes->add('add', 'Pizza::addPizza');
+ $routes->add('edit/(:num)', 'Pizza::editPizza/$1');
  $routes->add('/remove/(:num)', 'Pizza::deletePizza/$1');
 
  

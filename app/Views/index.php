@@ -20,9 +20,9 @@
 						<th class = "hide">ID</th>
 						<th>Name</th>
 						<th>Ingredients</th>
-						<th>Price</th>
+						<th>Prize</th>
 						<?php if(session()->get('role')==1): ?>
-							<th>Status</th>
+							<th>Action</th>
 						<?php endif;?>
 					</tr>
 					
@@ -36,7 +36,7 @@
 
 						<!--  -->
 						<?php if(session()->get('role')==1) :?>
-							<a href="/edit/<?= $pizza['id']?>" data-toggle="modal" data-target="#updatePizza">
+							<a href="pizza/edit/<?= $pizza['id']?>" data-toggle="modal" data-target="#updatePizza">
 								<i class="material-icons text-info editPizza" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i>
 							</a>
 							<a href="/remove/<?= $pizza['id']?>" data-toggle="tooltip" title="Delete Pizza!" data-placement="right">
@@ -112,7 +112,7 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="/edit" method="post">
+			<form  action="/pizza/updatePizza" method="post">
 				<input type="hidden" name = "id" id = "id" >
 				<div class="form-group">
 					<input type="text" class="form-control" name = "name" id = "name">
